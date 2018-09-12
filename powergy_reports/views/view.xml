@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <data>
-    <record id="inherit_purchase_order" model="ir.ui.view">
-     <field name="name">inherit_purchase_order</field>
+    <record id="inherit_purchase_order_powergy" model="ir.ui.view">
+     <field name="name">inherit_purchase_order_powergy</field>
      <field name="model">purchase.order</field>
      <field name="type">form</field>
      <field name="inherit_id" ref="purchase.purchase_order_form" />
@@ -13,8 +13,8 @@
       </xpath>
     </field>
   </record>
-  <record id="inherit_account_invoice" model="ir.ui.view">
-    <field name="name">inherit_account_invoice</field>
+  <record id="inherit_account_invoice_powergy" model="ir.ui.view">
+    <field name="name">inherit_account_invoice_powergy</field>
     <field name="model">account.invoice</field>
     <field name="type">form</field>
     <field name="inherit_id" ref="account.invoice_form" />
@@ -24,8 +24,8 @@
      </xpath>
    </field>
  </record>
- <record id="inherit_account_payment" model="ir.ui.view">
-   <field name="name">inherit_account_payment</field>
+ <record id="inherit_account_payment_powergy" model="ir.ui.view">
+   <field name="name">inherit_account_payment_powergy</field>
    <field name="model">account.payment</field>
    <field name="type">form</field>
    <field name="inherit_id" ref="account.view_account_payment_form" />
@@ -38,8 +38,8 @@
     </xpath>                
   </field>
 </record>
-<record id="inherit_sale_order" model="ir.ui.view">
-  <field name="name">inherit_sale_order</field>
+<record id="inherit_sale_order_powergy" model="ir.ui.view">
+  <field name="name">inherit_sale_order_powergy</field>
   <field name="model">sale.order</field>
   <field name="type">form</field>
   <field name="inherit_id" ref="sale.view_order_form" />
@@ -68,31 +68,20 @@
   </xpath>
 </field>          
 </record>
-<record id="inherit_sale_order_stockk" model="ir.ui.view">
-  <field name="name">inherit_sale_order</field>
-  <field name="model">sale.order</field>
-  <field name="type">form</field>
-  <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
-  <field name="arch" type="xml">
-  <xpath expr="//field[@name='warehouse_id']" position="after">
-    <field name='deliver_pro' />
-  </xpath>
-</field>
+<record id="inherit_sale_order_dates_powergy" model="ir.ui.view">
+    <field name="name">inherit_sale_order_dates_powergy</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+    <field name="arch" type="xml">
+        <group name="sale_shipping" position="inside">
+            <field name="receipt_date" />
+            <field name="delivery_time" />
+            <field name='deliver_pro' />
+        </group>
+    </field>
 </record>
-<record id="inherit_sale_order_dates" model="ir.ui.view">
-  <field name="name">inherit_sale_order</field>
-  <field name="model">sale.order</field>
-  <field name="type">form</field>
-  <field name="inherit_id" ref="sale_order_dates.view_order_form_inherit_sale_stock_inherit_sale_order_dates" />
-  <field name="arch" type="xml">
-  <xpath expr="//field[@name='effective_date']" position="after">
-    <field name="receipt_date" />
-    <field name="delivery_time" />
-  </xpath>
-</field>
-</record>
-<record id="inherit_stock_picking" model="ir.ui.view">
-  <field name="name">inherit_stock_picking</field>
+<record id="inherit_stock_picking_powergy" model="ir.ui.view">
+  <field name="name">inherit_stock_picking_powergy</field>
   <field name="model">stock.picking</field>
   <field name="type">form</field>
   <field name="inherit_id" ref="stock.view_picking_form" />
@@ -103,8 +92,8 @@
     </xpath>
   </field>          
 </record>
-<record id="inherit_res_partner" model="ir.ui.view">
-  <field name="name">inherit_res_partner</field>
+<record id="inherit_res_partner_powergy" model="ir.ui.view">
+  <field name="name">inherit_res_partner_powergy</field>
   <field name="model">res.partner</field>
   <field name="type">form</field>
   <field name="inherit_id" ref="base.view_partner_form" />

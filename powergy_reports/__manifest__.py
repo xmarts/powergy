@@ -6,7 +6,7 @@
     'category': 'Personalizacion',
     'author': 'William Colin Macedo',
     'website': 'www.xmarts.com',
-    'depends': ['base','purchase','contacts'],
+    'depends': ['base','purchase','contacts','sale_stock'],
     'data': ['views/view.xml',
     		 'reports/report_purchase_order.xml',
              'reports/report_factura.xml',
