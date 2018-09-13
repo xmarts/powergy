@@ -227,7 +227,7 @@
                             <br/><br/>
                             <table class="table table-condensed" t-if="o.move_lines" width="100%" style="margin:auto;" >
                                     <tr>
-                                        <td width="70%" style="background: rgba(0,0,0,0)">   
+                                        <td width="70%">   
                                         </td>
                                         <td class="text-center" width="15%">
                                             <strong>Sub Total: </strong>
@@ -237,7 +237,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td width="70%" style="background: rgba(0,0,0,0)">   
+                                        <td width="70%">   
                                         </td>
                                         <td class="text-center" width="15%">
                                             <strong>Impuesto: </strong>
@@ -247,7 +247,7 @@
                                         </td>
                                     </tr>
                                     <tr>      
-                                        <td width="70%" style="background: rgba(0,0,0,0)">   
+                                        <td width="70%">   
                                         </td>                                     
                                         <td class="text-center" width="15%">
                                             <strong>Total: </strong>
