@@ -48,8 +48,7 @@
                         <!-- Xmarts Fields-->
                         <div>
                             <strong>UUID</strong>
-                            <p 
-                               style="font-size:8px" t-field="o.l10n_mx_edi_cfdi_uuid"/>
+                            <p style="font-size:10px" t-field="o.l10n_mx_edi_cfdi_uuid"/>
                         </div>
                         <!-- Xmarts Fields-->
 
@@ -80,7 +79,7 @@
                                 <td class="hidden"><span t-field="l.origin"/></td>
                                 <td class="text-right">
                                     <span t-field="l.quantity"/>
-                                    <span t-field="l.uom_id" groups="product.group_uom"/>
+                                    <span t-field="l.uom_id.code" groups="product.group_uom"/>
                                 </td>
                                 <td class="text-right">
                                     <span t-field="l.price_unit"/>

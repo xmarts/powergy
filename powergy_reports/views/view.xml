@@ -92,6 +92,7 @@
     </xpath>
   </field>          
 </record>
+
 <record id="inherit_res_partner_powergy" model="ir.ui.view">
   <field name="name">inherit_res_partner_powergy</field>
   <field name="model">res.partner</field>
@@ -103,5 +104,6 @@
     </xpath>
   </field>          
 </record>
+
 </data>
 </odoo>

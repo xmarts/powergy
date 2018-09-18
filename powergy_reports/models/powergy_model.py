@@ -60,7 +60,7 @@ class FieldsAlbaran(models.Model):
 	op_text = fields.Char(string='OP')
 
 class ClabeField(models.Model):
-    
+
 	_inherit = 'res.partner'
-  
+
 	clabe_banco = fields.Char(string='CLABE', help='Aqui puedes ingresar tu CLABE de tu cuenta bancaria')
