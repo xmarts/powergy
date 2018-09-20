@@ -97,7 +97,10 @@
                     <strong>Tiempo de Entrega:</strong>
                     <p t-field="doc.delivery_time"/>
                 </div>
-
+                <div t-if="doc.indiv_orders">
+                    <strong>Pedidos Individuales:</strong>
+                    <span t-field="doc.indiv_orders" />
+                </div>
 
             </div>
 
@@ -221,10 +224,6 @@
                  <td><strong>Vendedor:</strong><span t-field="doc.partner_id.user_id.name"/></td>
                 </tr>
             </table>
-
-            <div>
-                   <span>Pedidos Individuales: </span><span t-field="doc.indiv_orders" />
-            </div>
 
             <p t-field="doc.note" style="font-size: 10px;"/>
             <p t-if="doc.payment_term_id.note">

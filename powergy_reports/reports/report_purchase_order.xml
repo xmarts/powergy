@@ -53,10 +53,11 @@
                     <p t-field="o.date_planned"/>
                 </div>
 
-                <div class="col-xs-3">
+                <div t-if="o.requisition_id" class="col-xs-3">
                     <strong>Terminos de pago: </strong>
                     <p t-field="o.requisition_id"/>  
                 </div>
+
 <!--
                 <div class="col-xs-3">
                     <strong>Cuenta Analitica: </strong>
@@ -141,10 +142,11 @@
                         </tr>
                     </table>
                 </div>
-            <div style="margin: auto;">Observaciones: <span t-field="o.observations" /></div>
             <br/><br/><br/>
             <div style="margin: auto;"><span t-field="o.amount_to_text"/><span t-field="o.currency_id"/></div>
             <br/>
+            <div t-if="o.observations" ><strong>Observaciones: </strong><p t-field="o.observations" /></div>
+
             <div style="margin: auto;">Elaborado por: <span t-field="o.partner_id.user_id.name" /></div>                
             </div>                    
             <p t-field="o.notes"  style="font-size:10px;"/>

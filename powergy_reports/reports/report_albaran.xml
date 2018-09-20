@@ -337,28 +337,20 @@
                                 </div>
                             </div>                             
                             <br/>     
-                            <h1 style="width: 100%;">Factura Pro-Forma #<span  t-field="o.name"/> </h1>
+                            <h1 style="width: 100%;">Prefactura #<span  t-field="o.name"/> </h1>
                             <br/>
                             <div class="row mt32 mb32" id="informations" t-if="o.sale_id">
                                 <div t-if="o.sale_id.client_order_ref" class="col-xs-3">
-                                    <strong>Su referencia:</strong>
+                                    <strong>D.D:</strong>
                                     <p t-field="o.sale_id.client_order_ref"/>
                                 </div>
                                 <div t-if="o.sale_id.confirmation_date and o.sale_id.state not in ['draft','sent']" class="col-xs-3">
-                                    <strong>Fecha ordenada:</strong>
+                                    <strong>Fecha salida:</strong>
                                     <p t-field="o.sale_id.confirmation_date"/>
                                 </div>
                                 <div t-if="o.sale_id.date_order and o.sale_id.state in ['draft','sent']" class="col-xs-3">
                                     <strong>Fecha del presupuesto:</strong>
                                     <p t-field="o.sale_id.date_order"/>
-                                </div>
-                                <div t-if="o.sale_id.user_id.name" class="col-xs-3">
-                                    <strong>Comercial:</strong>
-                                    <p t-field="o.sale_id.user_id"/>
-                                </div>
-                                <div name="payment_term" t-if="o.sale_id.payment_term_id" class="col-xs-3">
-                                    <strong>Términos de Pago:</strong>
-                                    <p t-field="o.sale_id.payment_term_id"/>
                                 </div>
                                  <div class="col-xs-3">
                                     <strong>Moneda:</strong>
@@ -376,7 +368,11 @@
                                     <strong>Tiempo de Entrega:</strong>
                                     <p t-field="o.sale_id.delivery_time"/>
                                 </div>
-                                 <div class="col-xs-3" t-if="o.owner_id">
+                                <div class="col-xs-3" t-if="o.concept">
+                                    <strong>Concepto</strong>
+                                    <p t-field="o.concept"/>
+                                </div>
+                                <div class="col-xs-3" t-if="o.owner_id">
                                     <strong>Owner:</strong>
                                     <p t-field="o.owner_id.name"/>
                                 </div>

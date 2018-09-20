@@ -58,6 +58,8 @@ class FieldsAlbaran(models.Model):
 
 	observations = fields.Text(string='Observations')
 	op_text = fields.Char(string='OP')
+	concept = fields.Selection([('suministro','Suministro'),
+								('instalacion','Instalacion')],string='Concepto')
 
 class ClabeField(models.Model):
 
