@@ -336,85 +336,142 @@
                                     </div>
                                 </div>
                             </div>                             
-                            <br/>     
-                            <h1 style="width: 100%;">Prefactura #<span  t-field="o.name"/> </h1>
+                            <br/> 
+
+                            <h1 style="width: 100%;">Pre Factura <span  t-field="o.name"/> </h1>
                             <br/>
                             <div class="row mt32 mb32" id="informations" t-if="o.sale_id">
                                 <div t-if="o.sale_id.client_order_ref" class="col-xs-3">
-                                    <strong>D.D:</strong>
-                                    <p t-field="o.sale_id.client_order_ref"/>
-                                </div>
-                                <div t-if="o.sale_id.confirmation_date and o.sale_id.state not in ['draft','sent']" class="col-xs-3">
-                                    <strong>Fecha salida:</strong>
-                                    <p t-field="o.sale_id.confirmation_date"/>
-                                </div>
-                                <div t-if="o.sale_id.date_order and o.sale_id.state in ['draft','sent']" class="col-xs-3">
-                                    <strong>Fecha del presupuesto:</strong>
-                                    <p t-field="o.sale_id.date_order"/>
-                                </div>
-                                 <div class="col-xs-3">
-                                    <strong>Moneda:</strong>
-                                    <p t-field="o.sale_id.currency_id"/>
-                                </div>  
-                                <div t-if="o.sale_id.deliver_pro" class="col-xs-3">
-                                    <strong>Luegar de entrega:</strong>
-                                    <p t-field="o.sale_id.deliver_pro"/>
-                                </div>
-                                <div t-if="o.sale_id.numor_customer" class="col-xs-3">
-                                    <strong>Numero de pedido cliente:</strong>
-                                    <p t-field="o.sale_id.numor_customer"/>
-                                </div>
-                                <div t-if="o.sale_id.delivery_time" class="col-xs-3">
-                                    <strong>Tiempo de Entrega:</strong>
-                                    <p t-field="o.sale_id.delivery_time"/>
-                                </div>
-                                <div class="col-xs-3" t-if="o.concept">
-                                    <strong>Concepto</strong>
-                                    <p t-field="o.concept"/>
-                                </div>
-                                <div class="col-xs-3" t-if="o.owner_id">
-                                    <strong>Owner:</strong>
-                                    <p t-field="o.owner_id.name"/>
-                                </div>
-                                 <div class="col-xs-3" t-if="o.observations">
-                                    <strong>Observaciones:</strong>
-                                    <p t-field="o.observations"/>
-                                </div>
-                            </div>
-                            <div class="row mt32 mb32" id="informations" t-if="o.purchase_id">
-                                <div t-if="o.purchase_id.partner_ref" class="col-xs-3">
-                                    <strong>Su referencia:</strong>
-                                    <p t-field="o.purchase_id.partner_ref"/>
-                                </div>
-                                <div t-if="o.purchase_id.date_order" class="col-xs-3">
-                                    <strong>Fecha de orden:</strong>
-                                    <p t-field="o.purchase_id.date_order"/>
-                                </div>
-                                <div t-if="o.purchase_id.date_approve" class="col-xs-3">
-                                    <strong>Fecha de aprovación:</strong>
-                                    <p t-field="o.purchase_id.date_approve"/>
-                                </div>
-                                <div t-if="o.purchase_id.create_uid" class="col-xs-3">
-                                    <strong>Realizo:</strong>
-                                    <p t-field="o.purchase_id.create_uid"/>
-                                </div>
-                                <div name="payment_term" t-if="o.purchase_id.payment_term_id" class="col-xs-3">
-                                    <strong>Términos de Pago:</strong>
-                                    <p t-field="o.purchase_id.payment_term_id"/>
-                                </div>
-                                 <div class="col-xs-3">
-                                    <strong>Moneda:</strong>
-                                    <p t-field="o.purchase_id.currency_id"/>
-                                </div>
-                                 <div class="col-xs-3" t-if="o.owner_id">
-                                    <strong>Owner:</strong>
-                                    <p t-field="o.owner_id.name"/>
-                                </div>
-                                 <div class="col-xs-3" t-if="o.observations">
-                                    <strong>Observaciones:</strong>
-                                    <p t-field="o.observations"/>
-                                </div>    
-                            </div>
+                    <strong>Su referencia:</strong>
+                    <p t-field="o.sale_id.client_order_ref"/>
+                </div>
+                <div t-if="o.sale_id.confirmation_date and o.sale_id.state not in ['draft','sent']" class="col-xs-3">
+                    <strong>Fecha ordenada:</strong>
+                    <p t-field="o.sale_id.confirmation_date"/>
+                </div>
+                <div t-if="o.sale_id.date_order and o.sale_id.state in ['draft','sent']" class="col-xs-3">
+                    <strong>Fecha del presupuesto:</strong>
+                    <p t-field="o.sale_id.date_order"/>
+                </div>
+                <div t-if="o.sale_id.user_id.name" class="col-xs-3">
+                    <strong>Comercial:</strong>
+                    <p t-field="o.sale_id.user_id"/>
+                </div>
+                <div name="payment_term" t-if="o.sale_id.payment_term_id" class="col-xs-3">
+                    <strong>Términos de Pago:</strong>
+                    <p t-field="o.sale_id.payment_term_id"/>
+                </div>
+                 <div class="col-xs-3">
+                    <strong>Moneda:</strong>
+                    <p t-field="o.sale_id.currency_id"/>
+                </div>               
+                <div t-if="o.sale_id.validity_date and o.sale_id.state in ['draft', 'sent']" class="col-xs-3">
+                    <strong>Fecha de caducidad:</strong>
+                    <p t-field="o.sale_id.validity_date"/>
+                </div>
+                 <div t-if="o.sale_id.name_site" class="col-xs-3">
+                    <strong>Nombre de sitio:</strong>
+                    <p t-field="o.sale_id.name_site"/>
+                </div>   
+                 <div t-if="o.sale_id.no_adrisa" class="col-xs-3">
+                    <strong>No. Adrisa/Grafo:</strong>
+                    <p t-field="o.sale_id.no_adrisa"/>
+                </div>   
+                 <div t-if="o.sale_id.folio_patrimonial" class="col-xs-3">
+                    <strong>Folio S. Patrimonial:</strong>
+                    <p t-field="o.sale_id.folio_patrimonial"/>
+                </div>   
+                <div t-if="o.sale_id.opportunity_id.name" class="col-xs-3">
+                    <strong>Marco:</strong>
+                    <p t-field="o.sale_id.opportunity_id.name"/>
+                </div> 
+                <div t-if="o.sale_id.deliver_pro" class="col-xs-3">
+                    <strong>Luegar de entrega:</strong>
+                    <p t-field="o.sale_id.deliver_pro"/>
+                </div>
+                <div t-if="o.sale_id.numor_customer" class="col-xs-3">
+                    <strong>Numero de pedido cliente:</strong>
+                    <p t-field="o.sale_id.numor_customer"/>
+                </div>
+                <div t-if="o.sale_id.fianza" class="col-xs-3">
+                    <strong>Fianza:</strong>
+                    <p t-field="o.sale_id.fianza"/>
+                </div> 
+                <div t-if="o.sale_id.delivery_time" class="col-xs-3">
+                    <strong>Tiempo de Entrega:</strong>
+                    <p t-field="o.sale_id.delivery_time"/>
+                </div>
+                <div t-if="o.sale_id.indiv_orders">
+                    <strong>Pedidos Individuales:</strong>
+                    <span t-field="o.sale_id.indiv_orders" />
+                </div>
+            </div>
+                    <div class="row mt32 mb32" id="informations" t-if="o.purchase_id">
+                    <div t-if="o.sale_id.client_order_ref" class="col-xs-3">
+                    <strong>Su referencia:</strong>
+                    <p t-field="o.sale_id.client_order_ref"/>
+                </div>
+                <div t-if="o.sale_id.confirmation_date and o.sale_id.state not in ['draft','sent']" class="col-xs-3">
+                    <strong>Fecha ordenada:</strong>
+                    <p t-field="o.sale_id.confirmation_date"/>
+                </div>
+                <div t-if="o.sale_id.date_order and o.sale_id.state in ['draft','sent']" class="col-xs-3">
+                    <strong>Fecha del presupuesto:</strong>
+                    <p t-field="o.sale_id.date_order"/>
+                </div>
+                <div t-if="o.sale_id.user_id.name" class="col-xs-3">
+                    <strong>Comercial:</strong>
+                    <p t-field="o.sale_id.user_id"/>
+                </div>
+                <div name="payment_term" t-if="o.sale_id.payment_term_id" class="col-xs-3">
+                    <strong>Términos de Pago:</strong>
+                    <p t-field="o.sale_id.payment_term_id"/>
+                </div>
+                 <div class="col-xs-3">
+                    <strong>Moneda:</strong>
+                    <p t-field="o.sale_id.currency_id"/>
+                </div>               
+                <div t-if="o.sale_id.validity_date and o.sale_id.state in ['draft', 'sent']" class="col-xs-3">
+                    <strong>Fecha de caducidad:</strong>
+                    <p t-field="o.sale_id.validity_date"/>
+                </div>
+                 <div t-if="o.sale_id.name_site" class="col-xs-3">
+                    <strong>Nombre de sitio:</strong>
+                    <p t-field="o.sale_id.name_site"/>
+                </div>   
+                 <div t-if="o.sale_id.no_adrisa" class="col-xs-3">
+                    <strong>No. Adrisa/Grafo:</strong>
+                    <p t-field="o.sale_id.no_adrisa"/>
+                </div>   
+                 <div t-if="o.sale_id.folio_patrimonial" class="col-xs-3">
+                    <strong>Folio S. Patrimonial:</strong>
+                    <p t-field="o.sale_id.folio_patrimonial"/>
+                </div>   
+                <div t-if="o.sale_id.opportunity_id.name" class="col-xs-3">
+                    <strong>Marco:</strong>
+                    <p t-field="o.sale_id.opportunity_id.name"/>
+                </div> 
+                <div t-if="o.sale_id.deliver_pro" class="col-xs-3">
+                    <strong>Luegar de entrega:</strong>
+                    <p t-field="o.sale_id.deliver_pro"/>
+                </div>
+                <div t-if="o.sale_id.numor_customer" class="col-xs-3">
+                    <strong>Numero de pedido cliente:</strong>
+                    <p t-field="o.sale_id.numor_customer"/>
+                </div>
+                <div t-if="o.sale_id.fianza" class="col-xs-3">
+                    <strong>Fianza:</strong>
+                    <p t-field="o.sale_id.fianza"/>
+                </div> 
+                <div t-if="o.sale_id.delivery_time" class="col-xs-3">
+                    <strong>Tiempo de Entrega:</strong>
+                    <p t-field="o.sale_id.delivery_time"/>
+                </div>
+                <div t-if="o.sale_id.indiv_orders">
+                    <strong>Pedidos Individuales:</strong>
+                    <span t-field="o.sale_id.indiv_orders" />
+                </div>
+            </div>
                             <div class="clearfix"></div>                                                         
                             <table class="table table-condensed">
                                 <thead>
