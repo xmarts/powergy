@@ -13,6 +13,8 @@
                             <div t-if="o.partner_id.vat" class="mt16"><t t-esc="o.company_id.country_id.vat_label or 'RFC'"/>: <span t-field="o.partner_id.vat"/></div>
                         </div>
                     </div>
+
+                    
                     <h2>
                         <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">Factura</span>
                         <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Factura borrador</span>
@@ -48,7 +50,7 @@
                         <!-- Xmarts Fields-->
                         <div>
                             <strong>UUID</strong>
-                            <p style="font-size:10px" t-field="o.l10n_mx_edi_cfdi_uuid"/>
+                            <p t-field="o.l10n_mx_edi_cfdi_uuid"/>
                         </div>
                         <!-- Xmarts Fields-->
 
@@ -75,8 +77,12 @@
                         </thead>
                         <tbody class="invoice_tbody">
                             <tr t-foreach="o.invoice_line_ids" t-as="l">
-                                <td><span t-field="l.name"/></td>
-                                <td class="hidden"><span t-field="l.origin"/></td>
+                                <td width="50%">
+                                    <span t-field="l.name"/>
+                                </td>
+                                <td class="hidden">
+                                    <span t-field="l.origin"/>
+                                </td>
                                 <td class="text-right">
                                     <span t-field="l.quantity"/>
                                     <span t-field="l.uom_id.l10n_mx_edi_code_sat_id.code" groups="product.group_uom"/>

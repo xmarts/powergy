@@ -147,7 +147,8 @@
             <br/>
             <div t-if="o.observations" ><strong>Observaciones: </strong><p t-field="o.observations" /></div>
 
-            <div style="margin: auto;">Elaborado por: <span t-field="o.partner_id.user_id.name" /></div>                
+            <div style="margin: auto;">Elaborado por: <span t-field="o.create_uid" /></div>
+            <div style="margin: auto;">Autorizado por: <span t-field="o.partner_id.user_id.name"/></div>                                
             </div>                    
             <p t-field="o.notes"  style="font-size:10px;"/>
             <div class="oe_structure"/>
