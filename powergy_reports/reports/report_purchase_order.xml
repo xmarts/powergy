@@ -57,6 +57,10 @@
                     <strong>Terminos de pago: </strong>
                     <p t-field="o.requisition_id"/>  
                 </div>
+                <div t-if="o.payment_term_id" class="col-xs-3">
+                    <strong>Plazo de Pago</strong>
+                    <p t-field="o.payment_term_id" />
+                </div>
 
 <!--
                 <div class="col-xs-3">

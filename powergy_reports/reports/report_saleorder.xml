@@ -220,15 +220,12 @@
 
             <table width="100%" style="margin:auto;">
                 <tr>
-                 <td><div t-if="doc.made_by" class="col-xs-3"><strong>Hecho por:</strong><p t-field="doc.made_by"/></div></td>
-                 <td><strong>Vendedor:</strong><span t-field="doc.partner_id.user_id.name"/></td>
+                 <td><div t-if="doc.made_by"><strong>Hecho por: </strong><p t-field="doc.made_by"/></div></td>
+                 <td><strong>Vendedor: </strong><span t-field="doc.partner_id.user_id.name"/></td>
                 </tr>
             </table>
 
             <p t-field="doc.note" style="font-size: 10px;"/>
-            <p t-if="doc.payment_term_id.note">
-                <span t-field="doc.payment_term_id.note"/>
-            </p>
             <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and doc.fiscal_position_id.note">
                 <strong>Posición Fiscal:</strong>
                 <span t-field="doc.fiscal_position_id.note"/>
