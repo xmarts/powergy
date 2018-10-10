@@ -73,12 +73,12 @@
                             </table>
                             <br/>
                             <br/>
-
+                        <!-- Inicia la tabla de productos -->
                             <table class="table table-condensed" t-if="o.move_lines" width="100%" style="margin:auto;">
                                 <t t-set="has_barcode" t-value="any([move_lines.product_id and move_lines.product_id.sudo().barcode or move_lines.package_id for move_lines in o.move_line_ids])"/>
                                 <t t-set="has_serial_number" t-value="o.move_line_ids.filtered(lambda ml: ml.lot_id or ml.lot_name)" groups="stock.group_production_lot" />
 
-                                <thead>
+                                <thead t-if="'/IN/' in o.name" >
                                     <tr>
                                         <th width="25%" class="text-center">Referencia y Nombre del Producto</th>
                                         <th width="15%" class="text-center">Serie/Lote/Pediment</th>
@@ -89,13 +89,23 @@
                                         <th width="15%" class="text-center">C. Total</th>
                                     </tr>
                                 </thead>
+                                <thead t-if="'/OUT/' in o.name" >
+                                    <tr>
+                                        <th width="25%" class="text-center">Referencia y Nombre del Producto</th>
+                                        <th width="15%" class="text-center">Serie/Lote/Pediment</th>
+                                        <th width="10%" class="text-center">Ud</th>
+                                        <th width="10%" class="text-center">Cantidad</th>
+                                        <th width="10%" class="text-center">Done</th>
+
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     <t t-set="subtotal" t-value="0" />
                                     <t t-set="tax" t-value="0"/>
                                     <t t-foreach="o.move_lines.sorted(key=lambda m: m.product_id.id)" t-as="move"> 
                                         <t t-foreach="o.purchase_id.order_line.sorted(key=lambda m: m.product_id.id)" t-as="po">
                                             <t t-if="move.product_id == po.product_id">
-                                                <tr>
+                                                <tr t-if="'/IN/' in o.name">
                                                 <t t-set="ctotal" t-value="0"/>
                                                 <td width="25%" class="text-center">
                                                     <span t-field="move.product_id.display_name"/>
@@ -133,7 +143,7 @@
                                         
                                         <t t-foreach="o.sale_id.order_line.sorted(key=lambda m: m.product_id.id)" t-as="po">
                                             <t t-if="move.product_id == po.product_id">
-                                               <tr>
+                                               <tr t-if="'/OUT/' in o.name" >
 
                                                 <t t-set="ctotal" t-value="0"/>
                                                 <td width="25%" class="text-center">
@@ -158,79 +168,16 @@
                                                 <td width="10%" class="text-center">
                                                     <span t-field="move.quantity_done"/>
                                                 </td>
-                                                <td width="15%" class="text-center">
-                                                    <span t-field="po.price_unit"/>
-                                                </td>
-                                                <td width="15%" class="text-center">
-                                                    <span t-esc="'{0:.3f}'.format(po.price_unit * move.quantity_done)"/>
-                                                </td>
-                                                <t t-set="subtotal" t-value="subtotal + (po.price_unit * move.quantity_done)" />
-                                                <t t-set="tax" t-value="tax + ((po.price_tax / po.product_uom_qty)*(move.quantity_done))"/>
-
                                         </tr>
-                                            </t>
                                         </t>
-                                            <!--
-                                            <td colspan="6">
-                                                <t t-if="o.move_lines">
-                                                    <table width="100%">
-                                                    <t t-foreach="o.move_lines" t-as="move" >        
-                                                       <tr t-foreach="move.move_line_ids.sorted(key=lambda ml: ml.location_id.id)" t-as="ml">
-                                                        <td width="20%">
-                                                            <t t-if="o.picking_type_id.code != 'incoming'">
-                                                                <span t-esc="ml.location_id.display_name"/>
-                                                                <t t-if="ml.package_id">
-                                                                    - <span t-field="ml.package_id"/>
-                                                                </t>
-                                                            </t>
-                                                        </td>
-                                                        <td width="30%">
-                                                            <t t-if="has_serial_number and ml.product_id.tracking != 'none'">
-                                                                <div class="col-xs-4">
-                                                                    <span t-field="ml.lot_id"/>
-                                                                    <span t-if="not ml.lot_id" t-field="ml.lot_name"/>
-                                                                </div>
-                                                            </t>
-                                                            <div class="col-xs-8">
-                                                                <span t-field="ml.qty_done"/>
-                                                                <t t-if="o.state!='done'">
-                                                                    / <span t-field="ml.product_uom_qty"/>
-                                                                </t>
-                                                            </div>
-                                                        </td>
-                                                        <td width="30%" align="left">
-                                                            <div>
-                                                                <span t-field="ml.location_dest_id"/>
-                                                                <t t-if="ml.result_package_id">
-                                                                    - <span t-field="ml.result_package_id"/>
-                                                                </t>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <span t-field="ml.product_id.standard_price"/>
-                                                        </td>
-                                                      <t t-set="subtotal" t-value="subtotal + (ml.product_id.standard_price * ml.qty_done)" />
-                                                      <t t-set="tax" t-value="tax + ((ml.product_id.taxes_id.amount / 100)*(ml.product_id.standard_price *  ml.qty_done))"/> 
-                                                    </tr>
-                                                 
-                                                 </t>   
-
-                                            </table>
-                                            </t>
-                                            <t t-else="">
-                                                <span>Aún sin reserva o cantidad realizada.</span>
-                                            </t>
-                                            </td> 
-                                            
-                                        -->
-
-
+                                        </t>
                                     </t>
                                     
                                 </tbody>
                             </table>
                             <br/><br/>
-                            <table class="table table-condensed" t-if="o.move_lines" width="100%" style="margin:auto;" >
+                            <div t-if="'/IN/' in o.name">
+                            <table  class="table table-condensed" t-if="o.move_lines" width="100%" style="margin:auto;" >
                                     <tr>
                                         <td width="70%">   
                                         </td>
@@ -262,6 +209,7 @@
                                         </td>
                                     </tr> 
                             </table>
+                            </div>
 
                             <table class="table table-condensed" t-if="o.entire_package_ids and o.picking_type_entire_packs">
                                 <thead>
@@ -282,7 +230,22 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <table style="margin: auto;">
+                            <table t-if="'/OUT/' in o.name" style="margin: auto;">
+
+                                <br/><br/><br/><br/><br/><br/><br/>
+                                <tr background="#000000">
+                                    <td>
+                                        <spand style="text-align: center;">______________________________</spand>
+                                        <h5 style="text-align: center;">Almacen</h5>
+                                    </td>
+                                    <td width="30%"></td>
+                                    <td>
+                                        <spand style="text-align: center;">______________________________</spand>
+                                        <h5 style="text-align: center;">Recibe</h5>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table t-if="'/IN/' in o.name" style="margin: auto;">
 
                                 <br/><br/><br/><br/><br/><br/><br/>
                                 <tr background="#000000">
@@ -296,7 +259,7 @@
                                         <h5 style="text-align: center;">Proveedor</h5>
                                     </td>
                                 </tr>
-                            </table> 
+                            </table>  
 
                             <p t-if="o.state in ['draft', 'waiting', 'confirmed']">
                                 No tiene ningún producto reservado para este picking. Haga clic en el botón 'Reservar'
@@ -346,42 +309,68 @@
                             <h1 style="width: 100%;">Pre Factura <span  t-field="o.name"/> </h1>
                             <br/>
                             <div class="row mt32 mb32" id="informations" t-if="o.sale_id">
-                                     <div t-if="o.sale_id.name_site" class="col-xs-3">
-                                        <strong>Nombre de sitio:</strong>
-                                        <p t-field="o.sale_id.name_site"/>
-                                    </div>
-                                    <div t-if="o.sale_id.client_order_ref" class="col-xs-3">
-                                        <strong>Su referencia:</strong>
-                                        <p t-field="o.sale_id.client_order_ref"/>
-                                    </div>
-                                    <div t-if="o.sale_id.no_adrisa" class="col-xs-3">
-                                        <strong>Estado del pedido:</strong>
-                                        <p t-field="o.sale_id.state"/>
-                                    </div>                                     
-                                    <div t-if="o.sale_id.no_adrisa" class="col-xs-3">
-                                        <strong>No. Adrisa/Grafo:</strong>
-                                        <p t-field="o.sale_id.no_adrisa"/>
-                                    </div>
-                                    <div t-if="o.sale_id.deliver_pro" class="col-xs-3">
-                                        <strong>Luegar de entrega:</strong>
-                                        <p t-field="o.sale_id.deliver_pro"/>
-                                    </div>
-                                     <div t-if="o.sale_id.folio_patrimonial" class="col-xs-3">
-                                        <strong>Folio S. Patrimonial:</strong>
-                                        <p t-field="o.sale_id.folio_patrimonial"/>
-                                    </div>   
-                                    <div t-if="o.sale_id.opportunity_id.name" class="col-xs-3">
-                                        <strong>Pedido Marco:</strong>
-                                        <p t-field="o.sale_id.opportunity_id.name"/>
-                                    </div>
-                                    <div t-if="o.sale_id.indiv_orders">
-                                        <strong>Pedidos Individuales:</strong>
-                                        <span t-field="o.sale_id.indiv_orders" />
-                                    </div>
-                                    <div t-if="o.sale_id.fianza" class="col-xs-3">
-                                        <strong>Fianza:</strong>
-                                        <p t-field="o.sale_id.fianza"/>
-                                    </div> 
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <strong>Sitio:</strong>
+                                            <p t-field="o.sale_id.name_site"/>
+                                        </div>
+                                    </td>
+                                    <td>   
+                                        <div>
+                                            <strong>Su referencia:</strong>
+                                            <p t-field="o.sale_id.client_order_ref"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong>Estado del pedido:</strong>
+                                            <p t-field="o.sale_id.invoice_status"/>
+                                        </div>
+                                    </td> 
+                                </tr>
+                                <tr>
+                                    <td>
+                                       <div>
+                                            <strong>No. Adrisa/Grafo:</strong>
+                                            <p t-field="o.sale_id.no_adrisa"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong>Luegar de entrega:</strong>
+                                            <p t-field="o.sale_id.deliver_pro"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong>Folio S. Patrimonial:</strong>
+                                            <p t-field="o.sale_id.folio_patrimonial"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>   
+                                        <div>
+                                            <strong>Pedido Marco:</strong>
+                                            <p t-field="o.sale_id.opportunity_id.name"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong>Pedidos Individuales:</strong>
+                                            <span t-field="o.sale_id.indiv_orders" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong>Fianza:</strong>
+                                            <p t-field="o.sale_id.fianza"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
 <!--
                                     <div t-if="o.sale_id.confirmation_date and o.sale_id.state not in ['draft','sent']" class="col-xs-3">
                                         <strong>Fecha ordenada:</strong>
@@ -423,43 +412,68 @@
                                 </div>
 
                                 <div class="row mt32 mb32" id="informations" t-if="o.purchase_id">
-                                    <div t-if="o.sale_id.name_site" class="col-xs-3">
-                                        <strong>Nombre de sitio:</strong>
-                                        <p t-field="o.sale_id.name_site"/>
-                                    </div>
-                                    <div t-if="o.sale_id.client_order_ref" class="col-xs-3">
-                                        <strong>Su referencia:</strong>
-                                        <p t-field="o.sale_id.client_order_ref"/>
-                                    </div>
-                                    <div t-if="o.sale_id.no_adrisa" class="col-xs-3">
-                                        <strong>Estado del pedido:</strong>
-                                        <p t-field="o.sale_id.state"/>
-                                    </div>                                     
-                                    <div t-if="o.sale_id.no_adrisa" class="col-xs-3">
-                                        <strong>No. Adrisa/Grafo:</strong>
-                                        <p t-field="o.sale_id.no_adrisa"/>
-                                    </div>
-                                    <div t-if="o.sale_id.deliver_pro" class="col-xs-3">
-                                        <strong>Luegar de entrega:</strong>
-                                        <p t-field="o.sale_id.deliver_pro"/>
-                                    </div>
-                                     <div t-if="o.sale_id.folio_patrimonial" class="col-xs-3">
-                                        <strong>Folio S. Patrimonial:</strong>
-                                        <p t-field="o.sale_id.folio_patrimonial"/>
-                                    </div>   
-                                    <div t-if="o.sale_id.opportunity_id.name" class="col-xs-3">
-                                        <strong>Pedido Marco:</strong>
-                                        <p t-field="o.sale_id.opportunity_id.name"/>
-                                    </div>
-                                    <div t-if="o.sale_id.indiv_orders">
-                                        <strong>Pedidos Individuales:</strong>
-                                        <span t-field="o.sale_id.indiv_orders" />
-                                    </div>
-                                    <div t-if="o.sale_id.fianza" class="col-xs-3">
-                                        <strong>Fianza:</strong>
-                                        <p t-field="o.sale_id.fianza"/>
-                                    </div>                                   
-
+                            <table >
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <strong>Sitio:</strong>
+                                            <p t-field="o.sale_id.name_site"/>
+                                        </div>
+                                    </td>
+                                    <td>   
+                                        <div>
+                                            <strong>Su referencia:</strong>
+                                            <p t-field="o.sale_id.client_order_ref"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong>Estado del pedido:</strong>
+                                            <p t-field="o.sale_id.invoice_status"/>
+                                        </div>
+                                    </td> 
+                                </tr>
+                                <tr>
+                                    <td>
+                                       <div>
+                                            <strong>No. Adrisa/Grafo:</strong>
+                                            <p t-field="o.sale_id.no_adrisa"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong>Luegar de entrega:</strong>
+                                            <p t-field="o.sale_id.deliver_pro"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong>Folio S. Patrimonial:</strong>
+                                            <p t-field="o.sale_id.folio_patrimonial"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>   
+                                        <div>
+                                            <strong>Pedido Marco:</strong>
+                                            <p t-field="o.sale_id.opportunity_id.name"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong>Pedidos Individuales:</strong>
+                                            <span t-field="o.sale_id.indiv_orders" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong>Fianza:</strong>
+                                            <p t-field="o.sale_id.fianza"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
 <!--
                                     <div t-if="o.sale_id.client_order_ref" class="col-xs-3">
                                         <strong>Su referencia:</strong>
