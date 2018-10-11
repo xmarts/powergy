@@ -172,7 +172,22 @@
                 <h5 style="text-align: center;">Recibe</h5>
             </td>
         </tr>
-    </table> 
+    </table>
+    <table t-if="'PC/' in o.name" style="margin: auto;">
+
+        <br/><br/><br/><br/><br/><br/><br/>
+        <tr>
+            <td>
+                <spand style="text-align: center;">______________________________</spand>
+                <h5 style="text-align: center;">Entrega</h5>
+            </td>
+            <td width="30%"></td>
+            <td>
+                <spand style="text-align: center;">______________________________</spand>
+                <h5 style="text-align: center;">Recibe</h5>
+            </td>
+        </tr>
+    </table>  
 </t>
 </t>
 </t>    
