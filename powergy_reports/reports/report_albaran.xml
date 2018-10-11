@@ -311,19 +311,19 @@
                             <div class="row mt32 mb32" id="informations" t-if="o.sale_id">
                             <table>
                                 <tr>
-                                    <td>
+                                    <td with="30%">
                                         <div>
                                             <strong>Sitio:</strong>
                                             <p t-field="o.sale_id.name_site"/>
                                         </div>
                                     </td>
-                                    <td>   
+                                    <td with="30%">   
                                         <div>
                                             <strong>Su referencia:</strong>
                                             <p t-field="o.sale_id.client_order_ref"/>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td with="30%">
                                         <div>
                                             <strong>Estado del pedido:</strong>
                                             <p t-field="o.sale_id.invoice_status"/>
@@ -331,19 +331,19 @@
                                     </td> 
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td with="30%">
                                        <div>
                                             <strong>No. Adrisa/Grafo:</strong>
                                             <p t-field="o.sale_id.no_adrisa"/>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td with="30%">
                                         <div>
                                             <strong>Luegar de entrega:</strong>
                                             <p t-field="o.sale_id.deliver_pro"/>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td with="30%">
                                         <div>
                                             <strong>Folio S. Patrimonial:</strong>
                                             <p t-field="o.sale_id.folio_patrimonial"/>
@@ -351,19 +351,19 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>   
+                                    <td> with="30%"   
                                         <div>
                                             <strong>Pedido Marco:</strong>
                                             <p t-field="o.sale_id.opportunity_id.name"/>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td with="30%">
                                         <div>
                                             <strong>Pedidos Individuales:</strong>
                                             <span t-field="o.sale_id.indiv_orders" />
                                         </div>
                                     </td>
-                                    <td>
+                                    <td with="30%">
                                         <div>
                                             <strong>Fianza:</strong>
                                             <p t-field="o.sale_id.fianza"/>
@@ -414,19 +414,19 @@
                                 <div class="row mt32 mb32" id="informations" t-if="o.purchase_id">
                             <table >
                                 <tr>
-                                    <td>
+                                    <td with="30%">
                                         <div>
                                             <strong>Sitio:</strong>
                                             <p t-field="o.sale_id.name_site"/>
                                         </div>
                                     </td>
-                                    <td>   
+                                    <td with="30%">   
                                         <div>
                                             <strong>Su referencia:</strong>
                                             <p t-field="o.sale_id.client_order_ref"/>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td with="30%">
                                         <div>
                                             <strong>Estado del pedido:</strong>
                                             <p t-field="o.sale_id.invoice_status"/>
@@ -434,19 +434,19 @@
                                     </td> 
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td with="30%"> 
                                        <div>
                                             <strong>No. Adrisa/Grafo:</strong>
                                             <p t-field="o.sale_id.no_adrisa"/>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td with="30%">
                                         <div>
                                             <strong>Luegar de entrega:</strong>
                                             <p t-field="o.sale_id.deliver_pro"/>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td with="30%">
                                         <div>
                                             <strong>Folio S. Patrimonial:</strong>
                                             <p t-field="o.sale_id.folio_patrimonial"/>
@@ -454,19 +454,19 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>   
+                                    <td with="30%">   
                                         <div>
                                             <strong>Pedido Marco:</strong>
                                             <p t-field="o.sale_id.opportunity_id.name"/>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td with="30%">
                                         <div>
                                             <strong>Pedidos Individuales:</strong>
                                             <span t-field="o.sale_id.indiv_orders" />
                                         </div>
                                     </td>
-                                    <td>
+                                    <td with="30%">
                                         <div>
                                             <strong>Fianza:</strong>
                                             <p t-field="o.sale_id.fianza"/>
