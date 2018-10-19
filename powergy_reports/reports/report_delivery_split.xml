@@ -173,7 +173,7 @@
             </td>
         </tr>
     </table>
-    <table t-if="'PC/' in o.name" style="margin: auto;">
+    <table t-if="'/INT/' in o.name" style="margin: auto;">
 
         <br/><br/><br/><br/><br/><br/><br/>
         <tr>

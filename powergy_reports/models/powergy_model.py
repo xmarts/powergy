@@ -50,6 +50,7 @@ class QuotationsFields(models.Model):
 	receipt_date = fields.Date(string='Fecha de recepcion')
 	delivery_time = fields.Char(string='Tiempo de Entrega')
 	deliver_pro = fields.Char(string="Lugar de enterga", help='Ingresa aqui el lugar de la entrega')
+	warranty = fields.Char(string='Garantia')
 	made_by = fields.Many2one('res.users', string='Elaborado por')
 
 class FieldsAlbaran(models.Model):

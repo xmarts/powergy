@@ -66,6 +66,9 @@
   <xpath expr="//field[@name='payment_term_id']">
     <field name="observations"/>
   </xpath>
+  <xpath expr="//field[@name='validity_date']" position="after">
+    <field name="warranty"/>
+  </xpath>
 </field>          
 </record>
 <record id="inherit_sale_order_dates_powergy" model="ir.ui.view">
